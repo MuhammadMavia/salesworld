@@ -1,0 +1,40 @@
+<md-content class="login-card md-whiteframe-24dp user-detail-md-content">
+    <div layout="row">
+        <div flex="60">
+            <img class="user-detail-profile-pic"
+                 ng-src="{{user.profilePic || croppedImage || './images/blank.jpg'}}">
+        </div>
+        <div flex layout="row" layout-align="end start">
+            <button class="md-button md-raised md-primary md-icon-button" ng-click="updateCompany()">
+                <ng-md-icon icon="edit" style="fill: #fff /*#E91E63*/" class="md-secondary md-hue-3"></ng-md-icon>
+            </button>
+            <button class="md-button md-raised md-primary md-icon-button">
+                <ng-md-icon icon="delete" style="fill: #fff /*#E91E63*/" class="md-secondary md-hue-3"></ng-md-icon>
+            </button>
+        </div>
+    </div>
+
+    <div layout="row">
+        <div flex>
+            <h4>{{company.name | capitalize}}</h4>
+            <span>Company Name</span>
+        </div>
+        <div flex>
+            <h4>{{company.address | capitalize}}</h4>
+            <span>Address</span>
+        </div>
+    </div>
+
+    <div layout="row">
+        <div flex>
+            <h4>{{company.usersIds.length}}</h4>
+            <span>Employ</span>
+        </div>
+    </div>
+    <div layout="row">
+        <div flex>
+            <h4>{{user.createdOn}}</h4>
+            <span>Join</span>
+        </div>
+    </div>
+</md-content>

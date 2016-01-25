@@ -1,0 +1,96 @@
+body {
+    height: 100%;
+    background: #e5e3e3;
+}
+
+.login-card {
+    border-radius: 0;
+    max-height: 50%;
+    color: #fff;
+   /* background: rgba(233, 30, 99, .2);*/
+    box-shadow: none;
+    padding: 5% 5% 5% 5%;
+    margin: 5% auto 0;
+    width: 33%;
+}
+
+.login-btn {
+    background: #ffffff;
+}
+
+.login-btn span {
+    color: #673AB7;
+}
+
+.loading {
+    box-shadow: none;
+    padding: 5% 5% 5% 5%;
+    border-radius: 2%;
+    margin: 5% auto 0;
+    width: 33%;
+}
+
+.loading md-progress-circular {
+    margin: 0 auto;
+    height: 50px;
+    width: 50px;
+}
+
+
+.user-detail-profile-pic{
+    outline: none;
+    width: 50%;
+    border-radius: 100%;
+}
+.user-detail-md-content h4{
+    margin-bottom: 3px;
+}
+
+.close-btn{
+    outline: none;
+    fill: #fff;
+   /* margin-top: -30px;
+    margin-right: -30px;*/
+    float: right;
+}
+
+
+.fill-white{
+    line-height: 0;
+    fill: #fff;
+}
+/* Scroll bar Css*/
+
+/* For the "inset" look only */
+html {
+    overflow: auto;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #673AB7;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #673AB7;
+}
+
+.md-subheader .md-subheader-inner{
+    padding: 0 0 0 5%;
+}
+.p-nav-list{
+    height: 90%;
+}
+.nav-list{
+    height: 100% !important;
+}

@@ -1,0 +1,38 @@
+<md-content class="login-card md-whiteframe-24dp">
+    <ng-md-icon ng-click="updatedUserSave(false)" icon="close" size="50" class="close-btn"></ng-md-icon>
+    <form>
+        <div layout="row" layout-padding>
+            <div flex="70">
+                <img ng-click="upLoadProfilePic(event,'templates/cropper.html','DialogCtrl')"
+                     class="user-detail-profile-pic"
+                     ng-src="{{croppedImage || user.profilePic || './images/blank-profile-pic.jpeg'}}">
+            </div>
+            <div flex></div>
+        </div>
+        <div layout="row">
+            <md-input-container flex class="md-block">
+                <label>First Name</label>
+                <input required type="text" ng-model="userUpdates.firstName">
+            </md-input-container>
+            <md-input-container flex class="md-block">
+                <label>Last Name</label>
+                <input required type="text" ng-model="userUpdates.lastName">
+            </md-input-container>
+        </div>
+        <md-input-container class="md-block">
+            <label>Email</label>
+            <input ng-disabled="1" required type="email" ng-model="userUpdates.userName">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <input required type="password" ng-model="userUpdates.password">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Confirm Password</label>
+            <input required type="password" ng-model="userUpdates.ConfirmPassword">
+        </md-input-container>
+        <button ng-disabled="!userUpdates.firstName || !userUpdates.lastName || !userUpdates.userName"
+                ng-click="updatedUserSave(true,userUpdates)" style="float: right" class="md-button md-primary md-raised">Update
+        </button>
+    </form>
+</md-content>

@@ -1,0 +1,20 @@
+<!--<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{company.name | capitalize}}</h2>
+        <span flex></span>
+        <md-button ng-click="doLogOut()" class=" login-btn">
+            logout
+        </md-button>
+    </div>
+
+</md-toolbar>-->
+<md-content class="login-card md-whiteframe-24dp">
+    <div>
+        <h1>Welcome!
+            <br>{{admin.firstName | capitalize }} {{ admin.lastName | capitalize}}
+        </h1>
+        <md-button ng-click="openLeftMenu()">
+            Open Left Menu
+        </md-button>
+    </div>
+</md-content>

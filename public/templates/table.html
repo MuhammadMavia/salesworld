@@ -1,0 +1,22 @@
+<md-toolbar></md-toolbar>
+
+
+
+
+<div  layout="row" layout-wrap flex>
+    <span flex="10">Days</span>
+
+    <span flex ng-repeat="time in times">{{time}}</span>
+</div>
+
+<div layout="column" ng-repeat="row in data track by $index">
+    <div layout="row" layout-wrap flex layout-align="center center">
+        <span flex="10">{{day[$index]}}</span>
+
+        <span flex ng-repeat="item in row track by $index"  class="checkbox-icon">
+            <md-checkbox ng-model="item"
+                         ng-change="toggle($index,$parent.$index,item)"></md-checkbox>
+        </span>
+    </div>
+</div>
+

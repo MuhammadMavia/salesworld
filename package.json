@@ -1,0 +1,25 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./app"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.0.1",
+    "cors": "^2.7.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.0.0",
+    "express-session": "^1.12.1",
+    "firebase": "^2.3.2",
+    "mongoose": "^4.3.2",
+    "mongoose-unique-validator": "^0.6.2",
+    "morgan": "~1.0.0",
+    "passport": "^0.3.2",
+    "static-favicon": "~1.0.0"
+  }
+}

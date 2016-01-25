@@ -1,0 +1,16 @@
+<md-content class="login-card md-whiteframe-24dp">
+    <form>
+        <md-input-container class="md-block">
+            <label>Company Name</label>
+            <input ng-model="company.name" type="text">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Address</label>
+            <input ng-model="company.address" type="text">
+        </md-input-container>
+
+        <button ng-disabled="!company.name || !company.address"
+                ng-click="createCompany(company)" style="float: right" class="md-button md-primary md-raised">Create
+        </button>
+    </form>
+</md-content>

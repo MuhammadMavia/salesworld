@@ -1,0 +1,40 @@
+<md-content class="login-card md-whiteframe-24dp user-detail-md-content">
+    <div layout="row">
+        <div flex="60">
+            <img class="user-detail-profile-pic"
+                 ng-src="{{user.profilePic || croppedImage || './images/blank-profile-pic.jpeg'}}">
+        </div>
+        <div flex layout="row" layout-align="end start">
+            <button class="md-button md-raised md-primary md-icon-button" ng-click="updateUserProfile(user)">
+                <ng-md-icon icon="edit" style="fill: #fff /*#E91E63*/" class="md-secondary md-hue-3"></ng-md-icon>
+            </button>
+            <button class="md-button md-raised md-primary md-icon-button">
+                <ng-md-icon icon="delete" style="fill: #fff /*#E91E63*/" class="md-secondary md-hue-3"></ng-md-icon>
+            </button>
+        </div>
+    </div>
+
+    <div layout="row">
+        <div flex>
+            <h4>{{user.firstName | capitalize}}</h4>
+            <span>First Name</span>
+        </div>
+        <div flex>
+            <h4>{{user.lastName | capitalize}}</h4>
+            <span>Last Name</span>
+        </div>
+    </div>
+
+    <div layout="row">
+        <div flex>
+            <h4>{{user.userName}}</h4>
+            <span>Email</span>
+        </div>
+    </div>
+    <div layout="row">
+        <div flex>
+            <h4>{{user.createdOn}}</h4>
+            <span>Join</span>
+        </div>
+    </div>
+</md-content>

@@ -1,0 +1,16 @@
+.checkbox-icon md-checkbox.md-checked .md-icon:after {
+     display: none;
+ }
+
+.checkbox-icon md-checkbox .md-icon {
+    height: 30px;
+    width: 40px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    background: #ff0000;
+    border: none;
+}
+
+.checkbox-icon md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {
+    background: #008000;
+}

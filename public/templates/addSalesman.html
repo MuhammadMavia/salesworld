@@ -1,0 +1,39 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>Create user</h2>
+    </div>
+</md-toolbar>
+<md-content class="login-card md-whiteframe-24dp">
+    <div>
+        <div layout="row">
+            <md-input-container flex class="md-block">
+                <label>First Name</label>
+                <input required type="text" ng-model="newUser.firstName">
+            </md-input-container>
+            <md-input-container flex class="md-block">
+                <label>Last Name</label>
+                <input required type="text" ng-model="newUser.lastName">
+            </md-input-container>
+        </div>
+        <md-input-container class="md-block">
+            <label>Email</label>
+            <input required type="email" ng-model="newUser.userName">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <input required type="password" ng-model="newUser.password">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Confirm Password</label>
+            <input required type="password" ng-model="newUser.ConfirmPassword">
+        </md-input-container>
+
+
+
+
+        <button ng-click="addUser(newUser)"
+                ng-disabled="!newUser.firstName || !newUser.lastName || !newUser.userName || !newUser.password || !newUser.ConfirmPassword"
+                style="float: right" class="md-button md-primary md-raised">Add
+        </button>
+    </div>
+</md-content>
