@@ -4,19 +4,34 @@ var connection = mongoose.connect("mongodb://mavia:mavia@ds037205.mongolab.com:3
 var uniqueValidator = require('mongoose-unique-validator');
 var bcrypt = require("bcrypt-nodejs");
 
-/* Company Schema*/
+/* Company Schema */
 
 var companiesSchema = new mongoose.Schema({
     name: {type: String, required: true},
     address: {type: String, required: true},
-    usersIds: {type: []},
+    usersIds: {type: Array},
+    productsIds: {type: Array},
     adminId: String,
+    logo: String,
     createdOn: {type: Date, default: Date.now()}
 });
 exports.companiesModel = mongoose.model("companies", companiesSchema);
 exports.companiesSchema = companiesSchema;
 
-/* SignUp Data*/
+/* Products Schema */
+
+var productsSchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    adminId: {type: String, required: true},
+    companyId: {type: String, required: true},
+    price: {type: Number, required: true},
+    img: String,
+    size: String
+});
+
+exports.productsModel = mongoose.model("products", productsSchema);
+
+/* User Schema */
 
 var usersSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
@@ -28,6 +43,7 @@ var usersSchema = new mongoose.Schema({
     profilePic: String,
     companyId: String,
     usersIds: [],
+    productsIds: {type: Array},
     firebaseToken: {type: String, required: true},
     createdOn: {type: Date, default: Date.now()}
 });

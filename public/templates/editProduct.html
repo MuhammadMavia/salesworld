@@ -1,0 +1,20 @@
+<md-content class="login-card md-whiteframe-24dp">
+    <form>
+        <md-input-container class="md-block">
+            <label>Product Name</label>
+            <input ng-model="product.name" type="text">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Price</label>
+            <input ng-model="product.price" type="number">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Size( Optional )</label>
+            <input ng-model="product.size" type="text">
+        </md-input-container>
+
+        <button ng-disabled="!product.name || !product.price"
+                ng-click="editProduct(product)" style="float: right" class="md-button md-primary md-raised">Save
+        </button>
+    </form>
+</md-content>

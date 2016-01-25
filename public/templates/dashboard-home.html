@@ -13,8 +13,7 @@
         <h1>Welcome!
             <br>{{admin.firstName | capitalize }} {{ admin.lastName | capitalize}}
         </h1>
-        <md-button ng-click="openLeftMenu()">
-            Open Left Menu
-        </md-button>
+        <md-button ng-click="openLeftMenu('salesman')">Salesman</md-button>
+        <md-button ng-click="openLeftMenu('products')">Products</md-button>
     </div>
 </md-content>

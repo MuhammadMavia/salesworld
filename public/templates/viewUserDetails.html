@@ -2,7 +2,7 @@
     <div layout="row">
         <div flex="60">
             <img class="user-detail-profile-pic"
-                 ng-src="{{user.profilePic || croppedImage || './images/blank-profile-pic.jpeg'}}">
+                 ng-src="{{croppedImage || user.profilePic || './images/blank-profile-pic.jpeg'}}">
         </div>
         <div flex layout="row" layout-align="end start">
             <button class="md-button md-raised md-primary md-icon-button" ng-click="updateUserProfile(user)">

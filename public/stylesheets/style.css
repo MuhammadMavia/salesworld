@@ -19,9 +19,11 @@ body {
 }
 
 .login-btn span {
-    color: #673AB7;
+    color: #607D8B;
 }
-
+.toot-bar-avatar{
+    outline: none;
+}
 .loading {
     box-shadow: none;
     padding: 5% 5% 5% 5%;
@@ -78,11 +80,11 @@ html {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #673AB7;
+    background: #607D8B;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-    background: #673AB7;
+    background: #607D8B;
 }
 
 .md-subheader .md-subheader-inner{

@@ -5,24 +5,6 @@
             <span ui-sref="dashboard.dashboard-home">Salesman</span>
         </h2>
         <span flex></span>
-        <!--<md-fab-speed-dial md-open="false" md-direction="right" class="md-scale">
-            <md-fab-trigger>
-                <md-button class="md-fab md-icon-button md-primary">
-                    <ng-md-icon icon="menu"></ng-md-icon>
-                </md-button>
-            </md-fab-trigger>
-            <md-fab-actions>
-                <md-button class="md-icon-button md-fab md-raised md-mini">
-                    <ng-md-icon icon="img/icons/twitter.svg"></ng-md-icon>
-                </md-button>
-                <md-button class="md-icon-button md-fab md-raised md-mini">
-                    <ng-md-icon icon="img/icons/facebook.svg"></ng-md-icon>
-                </md-button>
-                <md-button class="md-icon-button md-fab md-raised md-mini">
-                    <ng-md-icon icon="logout"></ng-md-icon>
-                </md-button>
-            </md-fab-actions>
-        </md-fab-speed-dial>-->
         <md-menu flex>
             <md-list-item>
                 <img ng-src="{{cropper.croppedImage || admin.profilePic || './images/blank-profile-pic.jpeg'}}"
@@ -49,11 +31,19 @@
                     </md-list-item>
 
 
-                    <md-list-item ng-click="viewCompanyDetails(admin)" class="md-2-line">
+                    <md-list-item ng-show="company" ng-click="viewCompanyDetails(admin)" class="md-2-line">
                         <md-divider></md-divider>
                         <ng-md-icon icon="account_balance" class=" md-avatar-icon fill-white"></ng-md-icon>
                         <div class="md-list-item-text" layout="column">
                             <h3>Company</h3>
+                        </div>
+                    </md-list-item>
+
+                    <md-list-item ng-click="createCompanyForm()" class="md-2-line" ng-hide="company">
+                        <md-divider></md-divider>
+                        <ng-md-icon icon="account_balance" class=" md-avatar-icon fill-white"></ng-md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>Create Company</h3>
                         </div>
                     </md-list-item>
 
@@ -74,62 +64,111 @@
 
 <ui-view name="dashboardContent"></ui-view>
 
-<div layout="row">
-    <md-sidenav md-component-id="left" class="md-sidenav-left">
-        <md-toolbar class="md-toolbar-tools">
-            <h2>
-                <span>Salesman</span>
+<md-sidenav md-component-id="salesman" class="md-sidenav-left">
+    <md-toolbar class="md-toolbar-tools">
+        <h2>
+            <span>Salesman</span>
+        </h2>
+        <span flex></span>
+    </md-toolbar>
+    <md-content class="p-nav-list">
+
+        <div ng-hide="users.length" layout="column" layout-padding layout-align="center center">
+            <h2 flex="50" ng-show="users.length == 0">
+                Empty
             </h2>
-            <span flex></span>
-        </md-toolbar>
-        <md-content class="p-nav-list">
 
-            <div ng-hide="users.length" layout="column" layout-padding layout-align="center center">
-                <h2 flex="50" ng-show="users.length == 0">
-                    Salesman Not Available
-                </h2>
-
-                <div flex="50" ng-hide="users" class="" layout="column" layout-align="center center">
-                    <md-progress-circular md-diameter="100"></md-progress-circular>
-                </div>
+            <div flex="50" ng-hide="users" class="" layout="column" layout-align="center center">
+                <md-progress-circular md-diameter="100"></md-progress-circular>
             </div>
+        </div>
 
-            <md-list ng-show="users.length" class="nav-list">
-                <md-list-item layout="row">
-                    <md-input-container flex="100">
-                        <label>
-                            <ng-ng-md-icon icon="search" class="name" style="fill: #E91E63" size="15"></ng-ng-md-icon>
-                            Search
-                        </label>
-                        <input ng-model="searchText" type="text">
-                    </md-input-container>
-                </md-list-item>
+        <md-list ng-show="users.length" class="nav-list">
+            <md-list-item layout="row">
+                <md-input-container flex="100">
+                    <label>
+                        <ng-ng-md-icon icon="search" class="name" style="fill: #E91E63" size="15"></ng-ng-md-icon>
+                        Search
+                    </label>
+                    <input ng-model="searchText" type="text">
+                </md-input-container>
+            </md-list-item>
+            <md-divider></md-divider>
+
+
+            <md-list-item ng-click="viewUserDetails(user)" class="md-2-line"
+                          ng-repeat="user in users | filter:searchText | orderBy:'lastName'">
                 <md-divider></md-divider>
+                <img ng-src="{{user.profilePic || croppedImage || './images/blank-profile-pic.jpeg' }}"
+                     class="md-avatar"/>
+
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ user.firstName | capitalize}} {{ user.lastName | capitalize}}</h3>
+                    <h4>{{ user.userName }}</h4>
+                </div>
+            </md-list-item>
+
+            <md-divider></md-divider>
+        </md-list>
 
 
-                <md-list-item ng-click="viewUserDetails(user)" class="md-2-line"
-                              ng-repeat="user in users | filter:searchText | orderBy:'lastName'">
-                    <md-divider></md-divider>
-                    <img ng-src="{{user.profilePic || croppedImage || './images/blank-profile-pic.jpeg' }}"
-                         class="md-avatar"/>
+    </md-content>
+    <button ng-click="showUserFrom()"
+            class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
+        <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
+    </button>
+</md-sidenav>
+<md-sidenav md-component-id="products" class="md-sidenav-left">
+    <md-toolbar class="md-toolbar-tools">
+        <h2>
+            <span>Products</span>
+        </h2>
+        <span flex></span>
+    </md-toolbar>
+    <md-content class="p-nav-list">
 
-                    <div class="md-list-item-text" layout="column">
-                        <h3>{{ user.firstName | capitalize}} {{ user.lastName | capitalize}}</h3>
-                        <h4>{{ user.userName }}</h4>
-                    </div>
+        <div ng-hide="products.length" layout="column" layout-padding layout-align="center center">
+            <h2 flex="50" ng-show="products.length == 0">
+                Empty
+            </h2>
 
-                    <!--<ng-ng-md-icon icon="visibility" class="md-secondary md-hue-3 fill-white"></ng-ng-md-icon>-->
-                </md-list-item>
+            <div flex="50" ng-hide="products" class="" layout="column" layout-align="center center">
+                <md-progress-circular md-diameter="100"></md-progress-circular>
+            </div>
+        </div>
+
+        <md-list ng-show="products.length" class="nav-list">
+            <md-list-item layout="row">
+                <md-input-container flex="100">
+                    <label>
+                        <ng-ng-md-icon icon="search" class="name" style="fill: #E91E63" size="15"></ng-ng-md-icon>
+                        Search
+                    </label>
+                    <input ng-model="searchText" type="text">
+                </md-input-container>
+            </md-list-item>
+            <md-divider></md-divider>
 
 
+            <md-list-item ng-click="viewProductDetails(product)" class="md-2-line"
+                          ng-repeat="product in products | filter:searchText | orderBy:'lastName'">
                 <md-divider></md-divider>
-            </md-list>
+                <img ng-src="{{product.img || croppedImage || './images/product_blank' }}"
+                     class="md-avatar"/>
+
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ product.name | capitalize}}</h3>
+                    <h4>{{ product.price }}</h4>
+                </div>
+            </md-list-item>
+
+            <md-divider></md-divider>
+        </md-list>
 
 
-        </md-content>
-        <button ng-click="showUserFrom()"
-                class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
-            <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
-        </button>
-    </md-sidenav>
-</div>
+    </md-content>
+    <button ng-click="addProductFrom()"
+            class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
+        <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
+    </button>
+</md-sidenav>

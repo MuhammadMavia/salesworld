@@ -68,20 +68,44 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
                 }
             })
             .state('dashboard.updateUserProfile', {
-                url: '/updateUserProfile/:uId',
+                url: '/updateUserProfile',
                 views: {
                     'dashboardContent': {
-                        templateUrl: 'templates/updateUserProfile.html',
+                        templateUrl: 'templates/updateUserProfile.html'
                         //controller: 'updateUserProfile'
                     }
                 }
             })
             .state('dashboard.viewUserDetails', {
-                url: '/viewUserDetails/:user',
+                url: '/viewUserDetails',
                 views: {
                     'dashboardContent': {
-                        templateUrl: 'templates/viewUserDetails.html',
+                        templateUrl: 'templates/viewUserDetails.html'
                         //controller: 'updateUserProfile'
+                    }
+                }
+            })
+            .state('dashboard.viewProductDetails', {
+                url: '/viewProductDetails',
+                views: {
+                    'dashboardContent': {
+                        templateUrl: 'templates/viewProductDetails.html'
+                    }
+                }
+            })
+            .state('dashboard.addProduct', {
+                url: '/addProduct',
+                views: {
+                    'dashboardContent': {
+                        templateUrl: 'templates/addProduct.html'
+                    }
+                }
+            })
+            .state('dashboard.editProduct', {
+                url: '/editProduct',
+                views: {
+                    'dashboardContent': {
+                        templateUrl: 'templates/editProduct.html'
                     }
                 }
             })
@@ -98,7 +122,7 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
         $httpProvider.interceptors.push('httpInterceptor');
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('deep-purple').dark();
+            .primaryPalette('blue-grey').dark();
     })
     .filter('capitalize', function () {
         return function (input) {

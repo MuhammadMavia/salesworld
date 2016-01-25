@@ -15,10 +15,8 @@ router.post("/create-company", function (req, res) {
     var company = new companiesModel(req.body);
     company.save(function (err, data) {
         usersModel.update({_id: data.adminId}, {$set: {companyId: data._id}},function(e,d){
-            console.log(e,d);
+            res.send(err || data);
         });
-
-        res.send(err || data);
     });
 });
 

@@ -45,8 +45,8 @@ angular.module("salesman")
             }, 1000)
         }
 
-        function openLeftMenu() {
-            $mdSidenav('left').toggle();
+        function openLeftMenu(id) {
+            $mdSidenav(id).toggle();
         }
 
         function showDialog(ev, temp, ctrl) {

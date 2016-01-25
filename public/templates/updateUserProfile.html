@@ -25,11 +25,11 @@
         </md-input-container>
         <md-input-container class="md-block">
             <label>Password</label>
-            <input required type="password" ng-model="userUpdates.password">
+            <input type="password" ng-model="userUpdates.password">
         </md-input-container>
         <md-input-container class="md-block">
             <label>Confirm Password</label>
-            <input required type="password" ng-model="userUpdates.ConfirmPassword">
+            <input type="password" ng-model="userUpdates.ConfirmPassword">
         </md-input-container>
         <button ng-disabled="!userUpdates.firstName || !userUpdates.lastName || !userUpdates.userName"
                 ng-click="updatedUserSave(true,userUpdates)" style="float: right" class="md-button md-primary md-raised">Update

@@ -14,6 +14,7 @@ var passport = require("passport");
 
 var users = require('./routes/users');
 var company = require('./routes/company');
+var products = require('./routes/products');
 var signUp = require('./routes/signup');
 
 var app = express();
@@ -41,6 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/users', users);
+app.use('/products', products);
 app.use('/company', company);
 app.use('/account', signUp);
 
