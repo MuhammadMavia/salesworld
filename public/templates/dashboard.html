@@ -2,7 +2,7 @@
     <div class="md-toolbar-tools" layout="row">
 
         <h2 flex>
-            <span ui-sref="dashboard.dashboard-home">Salesman2222222222222222222</span>
+            <span ui-sref="dashboard.dashboard-home">Salesman</span>
         </h2>
         <span flex></span>
         <md-menu flex>
@@ -153,11 +153,11 @@
             <md-list-item ng-click="viewProductDetails(product)" class="md-2-line"
                           ng-repeat="product in products | filter:searchText | orderBy:'lastName'">
                 <md-divider></md-divider>
-                <img ng-src="{{product.img || croppedImage || './images/product_blank' }}"
+                <img ng-src="{{product.img || './images/product_blank' }}"
                      class="md-avatar"/>
 
                 <div class="md-list-item-text" layout="column">
-                    <h3>{{ product.name | capitalize}}</h3>
+                    <h3>{{ product.name | capitalize}} {{ product.size | capitalize}}</h3>
                     <h4>{{ product.price }}</h4>
                 </div>
             </md-list-item>

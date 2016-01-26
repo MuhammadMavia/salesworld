@@ -29,13 +29,19 @@ angular.module("salesman")
             return deferred.promise;
         };
         this.editProduct = function (product) {
+            common.showLoading();
+            if (common.croppedImage) {
+                product.img = common.croppedImage;
+            }
             var deferred = $q.defer();
             $http.post("/products/edit-product", product).then(
                 function (success) {
                     deferred.resolve(success.data);
+                    common.showMsg("Product Successfully Update");
                 },
                 function (error) {
                     deferred.resolve(error);
+                    common.showMsg("Product not Update!");
                 }
             );
             return deferred.promise;

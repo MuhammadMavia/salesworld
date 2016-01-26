@@ -26,7 +26,8 @@ var productsSchema = new mongoose.Schema({
     companyId: {type: String, required: true},
     price: {type: Number, required: true},
     img: String,
-    size: String
+    size: String,
+    createdOn: {type: Date, default: Date.now()}
 });
 
 exports.productsModel = mongoose.model("products", productsSchema);

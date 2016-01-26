@@ -1,4 +1,12 @@
 <md-content class="login-card md-whiteframe-24dp">
+    <div layout="row" layout-padding>
+        <div flex="70">
+            <img ng-click="upLoadProfilePic(event,'templates/cropper.html','DialogCtrl')"
+                 class="user-detail-profile-pic"
+                 ng-src="{{croppedImage || product.img || './images/blank.jpg'}}">
+        </div>
+        <div flex></div>
+    </div>
     <form>
         <md-input-container class="md-block">
             <label>Product Name</label>

@@ -1,0 +1,25 @@
+<md-content class="login-card md-whiteframe-24dp">
+    <ng-md-icon ui-sref="dashboard.viewCompany" icon="close" size="50" class="close-btn"></ng-md-icon>
+    <form>
+        <div layout="row" layout-padding>
+        <div flex="70">
+            <img ng-click="upLoadProfilePic(event,'templates/cropper.html','DialogCtrl')"
+                 class="user-detail-profile-pic"
+                 ng-src="{{croppedImage || user.profilePic || './images/blank.jpg'}}">
+        </div>
+        <div flex></div>
+        </div>
+        <md-input-container class="md-block">
+            <label>Company Name</label>
+            <input ng-model="company.name" type="text">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Address</label>
+            <input ng-model="company.address" type="text">
+        </md-input-container>
+
+        <button ng-disabled="!company.name || !company.address"
+                ng-click="updatedCompanySave(company)" style="float: right" class="md-button md-primary md-raised">Save
+        </button>
+    </form>
+</md-content>

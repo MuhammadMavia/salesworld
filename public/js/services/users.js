@@ -7,7 +7,6 @@ angular.module("salesman")
             $http.get("/users").then(
                 function (success) {
                     admin = success.data;
-                    // company.adminId = admin._id;
                     deferred.resolve(admin);
                 },
                 function (err) {
@@ -150,5 +149,22 @@ angular.module("salesman")
                 $state.go("dashboard.viewUserDetails");
             }
 
+        };
+        this.updatedCompanySave = function (company) {
+            common.showLoading();
+            if (common.croppedImage) {
+                company.logo = common.croppedImage;
+            }
+            $http.post("/company/update-company", company).then(
+                function (success) {
+                    $mdDialog.hide();
+                    common.showMsg("Successfully Update Company");
+                    $state.go("dashboard.viewCompany")
+                },
+                function (err) {
+                    $mdDialog.hide();
+                    common.showMsg("Failed to Update!");
+                }
+            )
         };
     });

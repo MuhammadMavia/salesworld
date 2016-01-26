@@ -14,10 +14,21 @@ router.use(bodyParser.urlencoded());
 router.post("/create-company", function (req, res) {
     var company = new companiesModel(req.body);
     company.save(function (err, data) {
-        usersModel.update({_id: data.adminId}, {$set: {companyId: data._id}},function(e,d){
+        usersModel.update({_id: data.adminId}, {$set: {companyId: data._id}}, function (e, d) {
             res.send(err || data);
         });
     });
+});
+
+router.post("/update-company", function (req, res) {
+    delete req.body.usersIds;
+    delete req.body.productsIds;
+    delete req.body.adminId;
+    console.log(req.body);
+    companiesModel.update({_id: req.body._id}, {$set: req.body}, function (err, data) {
+        console.log(err || data);
+        res.send(err || data);
+    })
 });
 
 router.post("/add-salesman-id", function (req, res) {

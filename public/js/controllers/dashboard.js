@@ -65,6 +65,7 @@ angular.module("salesman")
         $scope.addProductFrom = productsService.addProductFrom;
         $scope.editProduct = function (product) {
             productsService.editProduct(product).then(function (data) {
+                $mdDialog.hide();
                 $state.go("dashboard.dashboard-home");
             })
         };
@@ -90,5 +91,6 @@ angular.module("salesman")
             $state.go("dashboard.updateUserProfile");
         };
         $scope.updatedUserSave = usersService.updatedUserSave;
+        $scope.updatedCompanySave = usersService.updatedCompanySave;
         $scope.upLoadProfilePic = common.showDialog;
     });

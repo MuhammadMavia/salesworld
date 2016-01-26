@@ -14,6 +14,26 @@ var usersSchema = schema.usersSchema;
 
 //var publicPath = path.resolve(__dirname, 'public');
 //router.use(express.static(publicPath));
+
+
+
+/*var listRef = new Firebase("https://salesworld.firebaseio.com/presence/");
+var userRef = listRef.push();
+
+// Add ourselves to presence list when online.
+var presenceRef = new Firebase("https://salesworld.firebaseio.com/.info/connected");
+presenceRef.on("value", function(snap) {
+    if (snap.val()) {
+        // Remove ourselves when we disconnect.
+        userRef.onDisconnect().remove();
+
+        userRef.set(true);
+    }
+});*/
+
+
+
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded());
 router.post('/signup', function (req, res) {
