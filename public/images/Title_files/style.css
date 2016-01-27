@@ -1,0 +1,14 @@
+#firepad {
+    width: 100%;
+    height: 450px;
+    background-color: #ffd7d7; /* dark orange background */
+}
+
+/* Note: CodeMirror applies its own styles which can be customized in the same way.
+   To apply a background to the entire editor, we need to also apply it to CodeMirror. */
+.CodeMirror {
+    background-color: #dcffff;
+}
+.powered-by-firepad{
+    /*display: none;*/
+}

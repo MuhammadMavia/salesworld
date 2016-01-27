@@ -1,4 +1,5 @@
 var express = require('express');
+var bcrypt = require("bcrypt-nodejs");
 var router = express.Router();
 var schema = require("./schema");
 var usersModel = schema.usersModel;
@@ -17,8 +18,13 @@ router.get('/users/:adminId', function (req, res) {
 
 
 router.post('/update-profile', function (req, res) {
-    usersModel.update({_id: req.body._id}, {$set: req.body}, function (err, success) {
-        res.send(err || success);
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(req.body.password, salt, null, function (err, hashed) {
+            req.body.password = hashed;
+            usersModel.update({_id: req.body._id}, {$set: req.body}, function (err, success) {
+                res.send(err || success);
+            });
+        });
     });
 });
 module.exports = router;

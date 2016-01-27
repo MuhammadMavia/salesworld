@@ -31,8 +31,9 @@
             <label>Confirm Password</label>
             <input type="password" ng-model="userUpdates.ConfirmPassword">
         </md-input-container>
-        <button ng-disabled="!userUpdates.firstName || !userUpdates.lastName || !userUpdates.userName"
-                ng-click="updatedUserSave(true,userUpdates)" style="float: right" class="md-button md-primary md-raised">Update
+        <button ng-disabled="!userUpdates.firstName || !userUpdates.lastName || !userUpdates.userName || !userUpdates.password || !userUpdates.ConfirmPassword"
+                ng-click="updatedUserSave(true,userUpdates)" style="float: right"
+                class="md-button md-primary md-raised">Update
         </button>
     </form>
 </md-content>

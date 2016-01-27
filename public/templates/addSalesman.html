@@ -4,7 +4,7 @@
     </div>
 </md-toolbar>
 <md-content class="login-card md-whiteframe-24dp">
-    <div>
+    <form>
         <div layout="row">
             <md-input-container flex class="md-block">
                 <label>First Name</label>
@@ -35,5 +35,5 @@
                 ng-disabled="!newUser.firstName || !newUser.lastName || !newUser.userName || !newUser.password || !newUser.ConfirmPassword"
                 style="float: right" class="md-button md-primary md-raised">Add
         </button>
-    </div>
+    </form>
 </md-content>

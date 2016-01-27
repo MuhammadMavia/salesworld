@@ -116,14 +116,7 @@ angular.module("salesman")
         this.updatedUserSave = function (done, userUpdates) {
             if (done) {
                 var user = null;
-                if (userUpdates.password && userUpdates.ConfirmPassword) {
                     user = common.matchPassword(userUpdates);
-                }
-                else {
-                    user = {};
-                    user.firstName = userUpdates.firstName.toLowerCase();
-                    user.lastName = userUpdates.lastName.toLowerCase();
-                }
                 if (!user) {
                     common.showMsg("Password not matched!");
                 }

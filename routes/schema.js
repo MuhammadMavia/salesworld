@@ -48,13 +48,10 @@ var usersSchema = new mongoose.Schema({
     firebaseToken: {type: String, required: true},
     createdOn: {type: Date, default: Date.now()}
 });
-
-function n() {
-}
 usersSchema.pre("save", function (done) {
     var user = this;
     bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, n, function (err, hashed) {
+        bcrypt.hash(user.password, salt, null, function (err, hashed) {
             user.password = hashed;
             done();
         });
