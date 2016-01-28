@@ -5,6 +5,25 @@
             <span ui-sref="dashboard.dashboard-home">Salesman</span>
         </h2>
         <span flex></span>
+        <md-menu>
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Notification">
+                <ng-md-icon ng-hide="notifications.length" icon="notifications_off" class="fill-white"></ng-md-icon>
+                <ng-md-icon ng-show="notifications.length" icon="notifications" style="fill: red"></ng-md-icon>
+            </md-button>
+            <md-menu-content width="4">
+                <md-list>
+
+                    <md-list-item ng-click="viewAdminDetails(admin)" class="md-2-line" ng-repeat="noti in notifications">
+                        <md-divider></md-divider>
+                        <!--<ng-md-icon icon="face" class="fill-white md-avatar-icon"></ng-md-icon>-->
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{noti.name}}</h3>
+                        </div>
+                    </md-list-item>
+
+                </md-list>
+            </md-menu-content>
+        </md-menu>
         <md-menu flex>
             <md-list-item>
                 <img ng-src="{{cropper.croppedImage || admin.profilePic || './images/blank-profile-pic.jpeg'}}"
@@ -58,6 +77,8 @@
                 </md-list>
             </md-menu-content>
         </md-menu>
+
+
     </div>
 </md-toolbar>
 

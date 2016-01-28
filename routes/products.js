@@ -1,9 +1,11 @@
 var express = require('express');
+var Firebase = require('firebase');
 var router = express.Router();
 var schema = require("./schema");
 var productsModel = schema.productsModel;
 var usersModel = schema.usersModel;
 var companiesModel = schema.companiesModel;
+var ref = new Firebase("https://salesworld.firebaseio.com/");
 
 
 router.post("/add-product", function (req, res) {
@@ -21,6 +23,14 @@ router.post("/edit-product", function (req, res) {
     productsModel.update({_id: req.body._id}, {$set: req.body}, function (err, success) {
         res.send(err || success);
     });
+});
+
+router.post("/pushOrder", function (req, res) {
+    delete req.body.salesman.profilePic;
+    req.body.data.forEach(function(val){
+        ref.child(req.body.salesman.adminId).push().set(val);
+    });
+    res.end();
 });
 
 router.get("/products/:adminId", function (req, res) {

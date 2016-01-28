@@ -1,4 +1,4 @@
-angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img-cropper", "md.data.table"])
+angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img-cropper","firebase"])
     .run(function ($rootScope, $state) {
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {

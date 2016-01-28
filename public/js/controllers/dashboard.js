@@ -1,13 +1,17 @@
 angular.module("salesman")
-    .controller("Dashboard", function (usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
+    .controller("Dashboard", function ($firebaseArray,usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
         common.showLoading();
+
         //common.templateToast("templates/toast.html","updateUserProfile");
         // $scope.company = {};
         /* var uId = $stateParams.uId;
          console.log(uId);*/
+       var ref = new Firebase("https://salesworld.firebaseio.com/");
+
 
         usersService.getAdmin().then(function (admin) {
             $scope.admin = admin;
+            $scope.notifications = $firebaseArray(ref.child(admin._id));
             usersService.getCompany().then(function (company) {
                 $scope.company = company;
                 usersService.getUsers().then(function (users) {
@@ -18,6 +22,7 @@ angular.module("salesman")
                 });
             });
         });
+
         $scope.doLogOut = function () {
             common.doLogOut()
         };

@@ -68,4 +68,17 @@ router.post('/login', function (req, res) {
         }
     });
 });
+router.post('/login-salesman', function (req, res) {
+    usersModel.findOne({userName: req.body.userName}, function (err, success) {
+        if (success) {
+            bcrypt.compare(req.body.password, success.password, function (err, isMatch) {
+                isMatch ? res.send(success) : res.send(err);
+            });
+        }
+        else {
+            res.send(success)
+        }
+    });
+});
+
 module.exports = router;
