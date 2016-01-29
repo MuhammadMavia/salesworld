@@ -32,6 +32,14 @@ var productsSchema = new mongoose.Schema({
 
 exports.productsModel = mongoose.model("products", productsSchema);
 
+/* Notification Schema */
+
+var notificationsSchema = {
+    data: Object,
+    firebaseToken: String
+};
+
+exports.notificationsModel = mongoose.model("notifications", notificationsSchema);
 /* User Schema */
 
 var usersSchema = new mongoose.Schema({

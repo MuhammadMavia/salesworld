@@ -6,7 +6,7 @@ body {
 .login-card {
     border-radius: 0;
     max-height: 50%;
-    color: #fff;
+    color: #2196F3;
    /* background: rgba(233, 30, 99, .2);*/
     box-shadow: none;
     padding: 5% 5% 5% 5%;
@@ -19,7 +19,7 @@ body {
 }
 
 .login-btn span {
-    color: #607D8B;
+    color: #2196F3;
 }
 .toot-bar-avatar{
     outline: none;
@@ -56,10 +56,20 @@ body {
     float: right;
 }
 
+.online{
+    border: green 3px solid;
+}
+
+.offline{
+    border: #c20e11 3px solid;
+}
 
 .fill-white{
     line-height: 0;
-    fill: #fff;
+    fill: #edeffa;
+}
+.notificationsListRead{
+    background: rgba(33,150,243,0.1);
 }
 /* Scroll bar Css*/
 
@@ -80,11 +90,11 @@ html {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #607D8B;
+    background: #2196F3;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-    background: #607D8B;
+    background: #2196F3;
 }
 
 .md-subheader .md-subheader-inner{

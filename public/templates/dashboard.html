@@ -6,19 +6,22 @@
         </h2>
         <span flex></span>
         <md-menu>
-            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Notification">
-                <ng-md-icon ng-hide="notifications.length" icon="notifications_off" class="fill-white"></ng-md-icon>
-                <ng-md-icon ng-show="notifications.length" icon="notifications" style="fill: red"></ng-md-icon>
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event);checkNotifications()"
+                       aria-label="Notification">
+                <ng-md-icon ng-show="oldNotifications == notifications.length" icon="notifications_off"
+                            class="fill-white"></ng-md-icon>
+                <ng-md-icon ng-hide="oldNotifications == notifications.length" icon="notifications"
+                            style="fill: red"></ng-md-icon>
             </md-button>
             <md-menu-content width="4">
                 <md-list>
-
-                    <md-list-item ng-click="viewAdminDetails(admin)" class="md-2-line" ng-repeat="noti in notifications">
+                    <md-list-item ng-class="{notificationsListRead :!noti.read}" ng-click="readNotification(noti,$index)"
+                                  ng-repeat="noti in notifications | orderBy:'-time'">
+                        <p>{{noti.data.length}} order received by {{noti.salesman.firstName | capitalize}}
+                            {{noti.salesman.lastName | capitalize}}
+                            <!--{{noti.time}}-->
+                        </p>
                         <md-divider></md-divider>
-                        <!--<ng-md-icon icon="face" class="fill-white md-avatar-icon"></ng-md-icon>-->
-                        <div class="md-list-item-text" layout="column">
-                            <h3>{{noti.name}}</h3>
-                        </div>
                     </md-list-item>
 
                 </md-list>
@@ -121,11 +124,12 @@
                           ng-repeat="user in users | filter:searchText | orderBy:'lastName'">
                 <md-divider></md-divider>
                 <img ng-src="{{user.profilePic || croppedImage || './images/blank-profile-pic.jpeg' }}"
-                     class="md-avatar"/>
+                     class="md-avatar" ng-class="{online:online.length,offline:!online.length}"/>
 
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ user.firstName | capitalize}} {{ user.lastName | capitalize}}</h3>
                     <h4>{{ user.userName }}</h4>
+                    <h4>{{ online | json}}</h4>
                 </div>
             </md-list-item>
 

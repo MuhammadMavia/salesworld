@@ -13,6 +13,7 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
                 }
             })
     })
+    .constant("firebaseRef","https://salesworld.firebaseio.com/")
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
         $stateProvider
             .state("login", {
@@ -122,7 +123,7 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
         $httpProvider.interceptors.push('httpInterceptor');
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue-grey').dark();
+            .primaryPalette('blue');
     })
     .filter('capitalize', function () {
         return function (input) {

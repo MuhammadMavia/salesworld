@@ -1,17 +1,41 @@
 angular.module("salesman")
-    .controller("Dashboard", function ($firebaseArray,usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
+    .controller("Dashboard", function (firebaseRef, $firebaseArray, usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
         common.showLoading();
 
         //common.templateToast("templates/toast.html","updateUserProfile");
         // $scope.company = {};
         /* var uId = $stateParams.uId;
          console.log(uId);*/
-       var ref = new Firebase("https://salesworld.firebaseio.com/");
+        var ref = new Firebase(firebaseRef);
 
+        $scope.oldNotifications = 0;
+
+        $scope.checkNotifications = function () {
+            $scope.oldNotifications = $scope.notifications.length;
+            $scope.notifications.forEach(function (val) {
+                $http.post("/products/push-notifications", {firebaseToken: $scope.admin.firebaseToken, data: val});
+            });
+            $http.get("/products/get-notifications").then(
+                function (success) {
+                    console.log(success);
+                },
+                function (err) {
+                    console.log(err);
+                }
+            );
+
+        };
+        $scope.readNotification = function (noti, index) {
+            noti.read = true;
+            $scope.notifications.$save(noti);
+        };
+
+
+        //$scope.online = $firebaseArray(ref.child("presence").child("56a9e1c9bd88b2b80cef51a9"));
 
         usersService.getAdmin().then(function (admin) {
             $scope.admin = admin;
-            $scope.notifications = $firebaseArray(ref.child(admin._id));
+            $scope.notifications = $firebaseArray(ref.child("notifications").child(admin._id).child("notifications"));
             usersService.getCompany().then(function (company) {
                 $scope.company = company;
                 usersService.getUsers().then(function (users) {
@@ -22,7 +46,6 @@ angular.module("salesman")
                 });
             });
         });
-
         $scope.doLogOut = function () {
             common.doLogOut()
         };

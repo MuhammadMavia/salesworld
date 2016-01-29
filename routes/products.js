@@ -5,7 +5,25 @@ var schema = require("./schema");
 var productsModel = schema.productsModel;
 var usersModel = schema.usersModel;
 var companiesModel = schema.companiesModel;
+var notificationsModel = schema.notificationsModel;
 var ref = new Firebase("https://salesworld.firebaseio.com/");
+
+
+router.post("/push-notifications", function (req, res) {
+    var notification = new notificationsModel(req.body);
+    notification.save(function (success, error) {
+        console.log(success, error);
+        //console.log(req.body);
+        res.end();
+    })
+});
+
+
+router.get("/get-notifications", function (req, res) {
+    notificationsModel.find(function (success, error) {
+        res.send(success || error);
+    })
+});
 
 
 router.post("/add-product", function (req, res) {
@@ -27,8 +45,11 @@ router.post("/edit-product", function (req, res) {
 
 router.post("/pushOrder", function (req, res) {
     delete req.body.salesman.profilePic;
-    req.body.data.forEach(function(val){
-        ref.child(req.body.salesman.adminId).push().set(val);
+    ref.child("notifications").child(req.body.salesman.adminId).child("notifications").push().set({
+        data: req.body.data,
+        salesman: req.body.salesman,
+        read: false,
+        time: Date.now()
     });
     res.end();
 });
