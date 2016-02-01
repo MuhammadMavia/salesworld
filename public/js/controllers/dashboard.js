@@ -1,5 +1,5 @@
 angular.module("salesman")
-    .controller("Dashboard", function (firebaseRef, $firebaseArray, usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
+    .controller("Dashboard", function (firebaseRef, $firebaseObject, $firebaseArray, usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
         common.showLoading();
 
         //common.templateToast("templates/toast.html","updateUserProfile");
@@ -8,21 +8,22 @@ angular.module("salesman")
          console.log(uId);*/
         var ref = new Firebase(firebaseRef);
 
-        $scope.oldNotifications = 0;
+
 
         $scope.checkNotifications = function () {
-            $scope.oldNotifications = $scope.notifications.length;
-            $scope.notifications.forEach(function (val) {
+            $scope.oldNotifications.val = $scope.notifications.length;
+            $scope.oldNotifications.$save();
+            /*$scope.notifications.forEach(function (val) {
                 $http.post("/products/push-notifications", {firebaseToken: $scope.admin.firebaseToken, data: val});
             });
             $http.get("/products/get-notifications").then(
                 function (success) {
-                    console.log(success);
+                    console.log($scope.mongoNotifications = success.data);
                 },
                 function (err) {
                     console.log(err);
                 }
-            );
+            );*/
 
         };
         $scope.readNotification = function (noti, index) {
@@ -35,6 +36,7 @@ angular.module("salesman")
 
         usersService.getAdmin().then(function (admin) {
             $scope.admin = admin;
+            $scope.oldNotifications = $firebaseObject(ref.child("notifications").child(admin._id));
             $scope.notifications = $firebaseArray(ref.child("notifications").child(admin._id).child("notifications"));
             usersService.getCompany().then(function (company) {
                 $scope.company = company;

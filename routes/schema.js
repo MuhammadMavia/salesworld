@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
-var connection = mongoose.connect("mongodb://mavia:mavia@ds037205.mongolab.com:37205/salesman");
-//var connection = mongoose.connect("mongodb://localhost/salesman");
+//var connection = mongoose.connect("mongodb://mavia:mavia@ds037205.mongolab.com:37205/salesman");
+var connection = mongoose.connect("mongodb://localhost/salesman");
 var uniqueValidator = require('mongoose-unique-validator');
 var bcrypt = require("bcrypt-nodejs");
 
@@ -35,7 +35,20 @@ exports.productsModel = mongoose.model("products", productsSchema);
 /* Notification Schema */
 
 var notificationsSchema = {
-    data: Object,
+    data: {
+        data: [{
+
+            size: String,
+            quantity: Number,
+            price: Number,
+            name: String
+        }],
+        read: Boolean,
+        salesman: {
+            type: String,
+            require: String
+        }
+    },
     firebaseToken: String
 };
 

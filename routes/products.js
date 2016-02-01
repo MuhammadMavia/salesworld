@@ -12,15 +12,13 @@ var ref = new Firebase("https://salesworld.firebaseio.com/");
 router.post("/push-notifications", function (req, res) {
     var notification = new notificationsModel(req.body);
     notification.save(function (success, error) {
-        console.log(success, error);
-        //console.log(req.body);
         res.end();
-    })
+    });
 });
 
 
 router.get("/get-notifications", function (req, res) {
-    notificationsModel.find(function (success, error) {
+    notificationsModel.find({firebaseToken: req.query.firebaseToken}, function (success, error) {
         res.send(success || error);
     })
 });
@@ -46,8 +44,9 @@ router.post("/edit-product", function (req, res) {
 router.post("/pushOrder", function (req, res) {
     delete req.body.salesman.profilePic;
     ref.child("notifications").child(req.body.salesman.adminId).child("notifications").push().set({
+        position: req.body.coords,
         data: req.body.data,
-        salesman: req.body.salesman,
+        salesman: req.body.salesman.firstName + " " + req.body.salesman.lastName,
         read: false,
         time: Date.now()
     });

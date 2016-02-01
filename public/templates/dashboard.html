@@ -8,17 +8,30 @@
         <md-menu>
             <md-button class="md-icon-button" ng-click="$mdOpenMenu($event);checkNotifications()"
                        aria-label="Notification">
-                <ng-md-icon ng-show="oldNotifications == notifications.length" icon="notifications_off"
+                <ng-md-icon ng-show="oldNotifications.val == notifications.length" icon="notifications_off"
                             class="fill-white"></ng-md-icon>
-                <ng-md-icon ng-hide="oldNotifications == notifications.length" icon="notifications"
+                <ng-md-icon ng-hide="oldNotifications.val == notifications.length" icon="notifications_on"
                             style="fill: red"></ng-md-icon>
             </md-button>
             <md-menu-content width="4">
                 <md-list>
-                    <md-list-item ng-class="{notificationsListRead :!noti.read}" ng-click="readNotification(noti,$index)"
+                    <md-list-item ng-class="{notificationsListRead :!noti.read}"
+                                  ng-click="readNotification(noti,$index)"
                                   ng-repeat="noti in notifications | orderBy:'-time'">
-                        <p>{{noti.data.length}} order received by {{noti.salesman.firstName | capitalize}}
+                        <p>{{noti.data.length}} order received by {{noti.salesman | capitalize}}
                             {{noti.salesman.lastName | capitalize}}
+                            <!--{{noti.time}}-->
+                        </p>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+                <md-list ng-repeat="mongo in mongoNotifications">
+
+                    <md-list-item ng-class="{notificationsListRead :!noti.read}"
+                                  ng-click="readNotification(noti,$index)"
+                                  ng-repeat="noti in mongo.data | orderBy:'-time'">
+                        <p>{{noti.data.length}} order received by {{noti.salesman | capitalize}}
+                            {{noti | json}}
                             <!--{{noti.time}}-->
                         </p>
                         <md-divider></md-divider>
