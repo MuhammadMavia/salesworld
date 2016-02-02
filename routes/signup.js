@@ -16,22 +16,19 @@ var usersSchema = schema.usersSchema;
 //router.use(express.static(publicPath));
 
 
-
 /*var listRef = new Firebase("https://salesworld.firebaseio.com/presence/");
-var userRef = listRef.push();
+ var userRef = listRef.push();
 
-// Add ourselves to presence list when online.
-var presenceRef = new Firebase("https://salesworld.firebaseio.com/.info/connected");
-presenceRef.on("value", function(snap) {
-    if (snap.val()) {
-        // Remove ourselves when we disconnect.
-        userRef.onDisconnect().remove();
+ // Add ourselves to presence list when online.
+ var presenceRef = new Firebase("https://salesworld.firebaseio.com/.info/connected");
+ presenceRef.on("value", function(snap) {
+ if (snap.val()) {
+ // Remove ourselves when we disconnect.
+ userRef.onDisconnect().remove();
 
-        userRef.set(true);
-    }
-});*/
-
-
+ userRef.set(true);
+ }
+ });*/
 
 
 router.use(bodyParser.json());
@@ -42,10 +39,10 @@ router.post('/signup', function (req, res) {
         password: req.body.password
     }, function (error, userData) {
         if (error) {
-            res.send(error);
+            res.send({status: 4, err: error});
         } else {
             req.body.firebaseToken = userData.uid;
-            console.log( req.body);
+            console.log(req.body);
             var user = new usersModel(req.body);
             user.save(function (err, success) {
                 res.send(err || success);

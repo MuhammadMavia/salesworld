@@ -110,6 +110,14 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
                     }
                 }
             })
+            .state('dashboard.viewNotification', {
+                url: '/viewNotification',
+                views: {
+                    'dashboardContent': {
+                        templateUrl: 'templates/viewNotification.html'
+                    }
+                }
+            })
             .state('dashboard.dashboard-home', {
                 url: '/home',
                 views: {

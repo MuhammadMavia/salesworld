@@ -6,37 +6,36 @@
         </h2>
         <span flex></span>
         <md-menu>
-            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event);checkNotifications()"
-                       aria-label="Notification">
-                <ng-md-icon ng-show="oldNotifications.val == notifications.length" icon="notifications_off"
-                            class="fill-white"></ng-md-icon>
-                <ng-md-icon ng-hide="oldNotifications.val == notifications.length" icon="notifications_on"
-                            style="fill: red"></ng-md-icon>
-            </md-button>
+            <div class="cursor-hand" ng-click="$mdOpenMenu($event);checkNotifications()"
+                 aria-label="Notification">
+                <ng-md-icon ng-show="oldNotifications.val == notifications.length" icon="notifications_on"
+                            class="fill-white">
+                </ng-md-icon>
+                <!--<ng-md-icon ng-hide="oldNotifications.val == notifications.length" icon="notifications_on"
+                            style="fill: red"></ng-md-icon>&ndash;&gt;-->
+                <div ng-hide="oldNotifications.val == notifications.length"
+                     class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{notifications.length}}">notifications_on
+                </div>
+            </div>
             <md-menu-content width="4">
                 <md-list>
                     <md-list-item ng-class="{notificationsListRead :!noti.read}"
-                                  ng-click="readNotification(noti,$index)"
+                                  ng-click="readNotification(noti,$index,true)"
                                   ng-repeat="noti in notifications | orderBy:'-time'">
                         <p>{{noti.data.length}} order received by {{noti.salesman | capitalize}}
                             {{noti.salesman.lastName | capitalize}}
-                            <!--{{noti.time}}-->
+                            {{(noti.time)}}
                         </p>
                         <md-divider></md-divider>
                     </md-list-item>
-                </md-list>
-                <md-list ng-repeat="mongo in mongoNotifications">
-
-                    <md-list-item ng-class="{notificationsListRead :!noti.read}"
-                                  ng-click="readNotification(noti,$index)"
-                                  ng-repeat="noti in mongo.data | orderBy:'-time'">
-                        <p>{{noti.data.length}} order received by {{noti.salesman | capitalize}}
-                            {{noti | json}}
-                            <!--{{noti.time}}-->
+                    <md-list-item ng-class="{notificationsListRead :!mongo.read}"
+                                  ng-repeat="mongo in mongoNotifications"
+                                  ng-click="readNotification(mongo,$index,false)">
+                        <p>{{mongo.data.length}} order received by {{mongo.salesman | capitalize}}
+                            {{mongo.time}}
                         </p>
                         <md-divider></md-divider>
                     </md-list-item>
-
                 </md-list>
             </md-menu-content>
         </md-menu>

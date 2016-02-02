@@ -1,0 +1,36 @@
+
+
+<div layout="row">
+    <md-sidenav md-component-id="products" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-toolbar-tools">
+            <h2>
+                <span>Products</span>
+            </h2>
+            <span flex></span>
+        </md-toolbar>
+        <md-content class="p-nav-list">
+            <md-list>
+                <md-list-item ng-click="viewProductDetails" class="md-2-line"
+                              ng-repeat="data in oneNotificationRead.data | orderBy:'-time'">
+                    <md-divider></md-divider>
+                    <img ng-src="{{data.img || './images/product_blank' }}"
+                         class="md-avatar"/>
+
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{data.name | capitalize}}  {{ data.size | capitalize}}</h3>
+                        <h4>{{ data.price }}</h4>
+                    </div>
+                </md-list-item>
+
+                <md-divider></md-divider>
+            </md-list>
+
+
+        </md-content>
+    </md-sidenav>
+    <div flex="">
+        <md-toolbar></md-toolbar>
+        {{oneNotificationRead|json}}
+
+    </div>
+</div>

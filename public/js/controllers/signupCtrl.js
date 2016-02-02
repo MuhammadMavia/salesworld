@@ -8,7 +8,12 @@ angular.module("salesman")
                     .then(
                         function (success) {
                             if (success.data.message) {
-                                common.showMsg("This user name is not available!")
+                                $mdDialog.hide();
+                                common.showMsg("This user name is not available!");
+                            }
+                            else if(success.data.status){
+                                $mdDialog.hide();
+                                common.showMsg("This user name is not available!");
                             }
                             else {
                                 localStorage.setItem("firebaseToken", success.data.firebaseToken);

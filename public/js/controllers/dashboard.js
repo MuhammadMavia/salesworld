@@ -1,5 +1,5 @@
 angular.module("salesman")
-    .controller("Dashboard", function (firebaseRef, $firebaseObject, $firebaseArray, usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
+    .controller("Dashboard", function ($timeout, firebaseRef, $firebaseObject, $firebaseArray, usersService, productsService, $mdMedia, $mdDialog, $state, common, $scope, $http, $stateParams, $rootScope) {
         common.showLoading();
 
         //common.templateToast("templates/toast.html","updateUserProfile");
@@ -9,26 +9,41 @@ angular.module("salesman")
         var ref = new Firebase(firebaseRef);
 
 
-
         $scope.checkNotifications = function () {
             $scope.oldNotifications.val = $scope.notifications.length;
             $scope.oldNotifications.$save();
-            /*$scope.notifications.forEach(function (val) {
-                $http.post("/products/push-notifications", {firebaseToken: $scope.admin.firebaseToken, data: val});
-            });
+            $timeout(function () {
+                $scope.notifications.forEach(function (val) {
+                    $scope.oldNotifications.val = $scope.notifications.length;
+                    val.adminFirebaseToken = $scope.admin.firebaseToken;
+                    $http.post("/products/push-notifications", val).then(function (success) {
+                        if (success) {
+                            $scope.notifications.$remove(val);
+                        }
+                    });
+                });
+            }, 30000);
             $http.get("/products/get-notifications").then(
                 function (success) {
-                    console.log($scope.mongoNotifications = success.data);
+                    $scope.mongoNotifications = success.data;
                 },
                 function (err) {
                     console.log(err);
                 }
-            );*/
+            );
 
         };
-        $scope.readNotification = function (noti, index) {
+        $scope.readNotification = function (noti, index, con) {
+            $state.go("dashboard.viewNotification");
+            $scope.oneNotificationRead = noti;
             noti.read = true;
-            $scope.notifications.$save(noti);
+            if (con) {
+                $scope.notifications.$save(noti);
+            }
+            else {
+                $http.post("/products/read-Noti", noti);
+            }
+
         };
 
 
@@ -81,13 +96,15 @@ angular.module("salesman")
             $state.go("dashboard.viewCompany");
         };
         $scope.addProduct = function (product) {
+            common.showLoading();
             product.adminId = $scope.admin._id;
             product.companyId = $scope.company._id;
             productsService.addProduct(product).then(
                 function () {
-                    console.log("OOO");
                     productsService.getProducts($scope.admin._id).then(function (products) {
                         $scope.products = products;
+                        $state.go("dashboard.dashboard-home");
+                        $mdDialog.hide();
                     });
                 }
             );

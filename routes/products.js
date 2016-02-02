@@ -12,13 +12,13 @@ var ref = new Firebase("https://salesworld.firebaseio.com/");
 router.post("/push-notifications", function (req, res) {
     var notification = new notificationsModel(req.body);
     notification.save(function (success, error) {
-        res.end();
+        res.send(success);
     });
 });
 
 
 router.get("/get-notifications", function (req, res) {
-    notificationsModel.find({firebaseToken: req.query.firebaseToken}, function (success, error) {
+    notificationsModel.find({adminFirebaseToken: req.query.firebaseToken}, function (success, error) {
         res.send(success || error);
     })
 });
@@ -37,6 +37,12 @@ router.post("/add-product", function (req, res) {
 
 router.post("/edit-product", function (req, res) {
     productsModel.update({_id: req.body._id}, {$set: req.body}, function (err, success) {
+        res.send(err || success);
+    });
+});
+
+router.post("/read-Noti", function (req, res) {
+    notificationsModel.update({_id: req.body._id}, {$set: req.body}, function (err, success) {
         res.send(err || success);
     });
 });
