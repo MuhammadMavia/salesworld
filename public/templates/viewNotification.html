@@ -1,13 +1,13 @@
 
 
-<div layout="row">
+<div layout="row" style="height: 100%">
     <md-sidenav md-component-id="products" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-toolbar-tools">
+        <!--<md-toolbar class="md-toolbar-tools">
             <h2>
                 <span>Products</span>
             </h2>
             <span flex></span>
-        </md-toolbar>
+        </md-toolbar>-->
         <md-content class="p-nav-list">
             <md-list>
                 <md-list-item ng-click="viewProductDetails " class="md-2-line"
@@ -28,11 +28,10 @@
 
         </md-content>
     </md-sidenav>
-    <div flex>
-        <md-toolbar></md-toolbar>
+    <div flex style="height: 100%">
         <!--{{oneNotificationRead|json}}-->
        <!-- <leaflet lf-center="center" height="200%" width="200%"></leaflet>-->
-        <leaflet lf-center="london" defaults="defaults" markers="markers" width="80%" height="500px"></leaflet>
+        <leaflet lf-center="london" defaults="defaults" markers="markers" width="100%" height="100%"></leaflet>
         <!--div class="login-card" id="map" zoom="8"></div>-->
 
     </div>

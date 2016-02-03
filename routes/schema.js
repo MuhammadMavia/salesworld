@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
-var connection = mongoose.connect("mongodb://mavia:mavia@ds037205.mongolab.com:37205/salesman");
-//var connection = mongoose.connect("mongodb://localhost/salesman");
+//var connection = mongoose.connect("mongodb://mavia:mavia@ds037205.mongolab.com:37205/salesman");
+var connection = mongoose.connect("mongodb://localhost/salesman");
 var uniqueValidator = require('mongoose-unique-validator');
 var bcrypt = require("bcrypt-nodejs");
 
