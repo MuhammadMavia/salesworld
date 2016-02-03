@@ -10,7 +10,7 @@
         </md-toolbar>
         <md-content class="p-nav-list">
             <md-list>
-                <md-list-item ng-click="viewProductDetails" class="md-2-line"
+                <md-list-item ng-click="viewProductDetails " class="md-2-line"
                               ng-repeat="data in oneNotificationRead.data | orderBy:'-time'">
                     <md-divider></md-divider>
                     <img ng-src="{{data.img || './images/product_blank' }}"
@@ -28,9 +28,12 @@
 
         </md-content>
     </md-sidenav>
-    <div flex="">
+    <div flex>
         <md-toolbar></md-toolbar>
-        {{oneNotificationRead|json}}
+        <!--{{oneNotificationRead|json}}-->
+       <!-- <leaflet lf-center="center" height="200%" width="200%"></leaflet>-->
+        <leaflet lf-center="london" defaults="defaults" markers="markers" width="80%" height="500px"></leaflet>
+        <!--div class="login-card" id="map" zoom="8"></div>-->
 
     </div>
 </div>

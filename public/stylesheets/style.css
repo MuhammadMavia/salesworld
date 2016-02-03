@@ -17,6 +17,10 @@ body {
 .login-btn {
     background: #ffffff;
 }
+#map {
+    width: 500px;
+    height: 300px;
+}
 
 .login-btn span {
     color: #2196F3;

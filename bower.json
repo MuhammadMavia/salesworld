@@ -22,6 +22,8 @@
     "angular-ui-router": "~0.2.15",
     "angular-material-icons": "~0.6.0",
     "angular-img-cropper": "~1.1.0",
-    "angular-material-data-table": "~0.9.9"
+    "angular-material-data-table": "~0.9.9",
+    "ui-leaflet": "~1.0.0",
+    "angular-leaflet-directive": "^0.10.0"
   }
 }

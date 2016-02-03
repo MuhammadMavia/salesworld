@@ -36,7 +36,6 @@ exports.productsModel = mongoose.model("products", productsSchema);
 
 var notificationsSchema = {
     data: [{
-
         size: String,
         quantity: Number,
         price: Number,
@@ -49,8 +48,7 @@ var notificationsSchema = {
         require: String
     },
     adminFirebaseToken: String,
-
-    time: Number
+    time: {type: Number, unique: true}
 };
 
 exports.notificationsModel = mongoose.model("notifications", notificationsSchema);

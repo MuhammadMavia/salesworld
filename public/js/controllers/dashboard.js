@@ -7,8 +7,6 @@ angular.module("salesman")
         /* var uId = $stateParams.uId;
          console.log(uId);*/
         var ref = new Firebase(firebaseRef);
-
-
         $scope.checkNotifications = function () {
             $scope.oldNotifications.val = $scope.notifications.length;
             $scope.oldNotifications.$save();
@@ -34,21 +32,39 @@ angular.module("salesman")
 
         };
         $scope.readNotification = function (noti, index, con) {
+            angular.extend($scope, {
+                london: {
+                    lat: noti.position.latitude,
+                    lng: noti.position.longitude,
+                    zoom: 14
+                },
+                defaults: {
+                    zoomAnimation: false,
+                    markerZoomAnimation: false,
+                    fadeAnimation: false
+                },
+                markers: {
+                    london: {
+                        lat: noti.position.latitude,
+                        lng: noti.position.longitude
+                    }
+                }
+            });
+
             $state.go("dashboard.viewNotification");
             $scope.oneNotificationRead = noti;
             noti.read = true;
             if (con) {
+                console.log("Firebase");
                 $scope.notifications.$save(noti);
             }
             else {
+                console.log("Mongodb");
                 $http.post("/products/read-Noti", noti);
             }
 
         };
-
-
         //$scope.online = $firebaseArray(ref.child("presence").child("56a9e1c9bd88b2b80cef51a9"));
-
         usersService.getAdmin().then(function (admin) {
             $scope.admin = admin;
             $scope.oldNotifications = $firebaseObject(ref.child("notifications").child(admin._id));
@@ -140,4 +156,6 @@ angular.module("salesman")
         $scope.updatedUserSave = usersService.updatedUserSave;
         $scope.updatedCompanySave = usersService.updatedCompanySave;
         $scope.upLoadProfilePic = common.showDialog;
+
+
     });

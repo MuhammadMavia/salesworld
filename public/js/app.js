@@ -1,4 +1,4 @@
-angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img-cropper","firebase"])
+angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img-cropper", "firebase", "leaflet-directive"])
     .run(function ($rootScope, $state) {
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
@@ -13,7 +13,7 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
                 }
             })
     })
-    .constant("firebaseRef","https://salesworld.firebaseio.com/")
+    .constant("firebaseRef", "https://salesworld.firebaseio.com/")
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
         $stateProvider
             .state("login", {
