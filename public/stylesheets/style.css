@@ -60,6 +60,7 @@ body {
     float: right;
 }
 
+/*
 .online{
     border: green 3px solid;
 }
@@ -67,6 +68,7 @@ body {
 .offline{
     border: #c20e11 3px solid;
 }
+*/
 
 .fill-white{
     line-height: 0;

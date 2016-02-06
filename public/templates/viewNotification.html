@@ -1,6 +1,4 @@
-
-
-<div layout="row" style="height: 100%">
+<div layout="row" style="height: 93%">
     <md-sidenav md-component-id="products" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')">
         <!--<md-toolbar class="md-toolbar-tools">
             <h2>
@@ -17,7 +15,7 @@
                          class="md-avatar"/>
 
                     <div class="md-list-item-text" layout="column">
-                        <h3>{{data.name | capitalize}}  {{ data.size | capitalize}}</h3>
+                        <h3>{{data.name | capitalize}} {{ data.size | capitalize}}</h3>
                         <h4>{{ data.price }}</h4>
                     </div>
                 </md-list-item>
@@ -29,9 +27,27 @@
         </md-content>
     </md-sidenav>
     <div flex style="height: 100%">
+
+        <md-toolbar class="md-tall md-warn">
+            <span flex></span>
+
+            <h2 class="md-toolbar-tools md-toolbar-tools-bottom" layout="row" layout-align="end end">
+                <span flex class="md-flex">
+                    {{oneNotificationRead.data.length}} order received from
+                    <b style="text-transform: capitalize">{{oneNotificationRead.salesman}}</b>
+                </span>
+                <sup flex class="md-flex">
+                    {{oneNotificationRead.time | date :"MM/dd/yyyy 'at' h:mma"}}
+                </sup>
+            </h2>
+        </md-toolbar>
         <!--{{oneNotificationRead|json}}-->
-       <!-- <leaflet lf-center="center" height="200%" width="200%"></leaflet>-->
-        <leaflet lf-center="london" defaults="defaults" markers="markers" width="100%" height="100%"></leaflet>
+        <!-- <leaflet lf-center="center" height="200%" width="200%"></leaflet>-->
+        <div style="height: 80%" layout="row" layout-align="center center" layout-padding>
+            <leaflet class="md-whiteframe-24dp" lf-center="london" defaults="defaults" markers="markers" width="60%"
+                     height="100%"></leaflet>
+        </div>
+
         <!--div class="login-card" id="map" zoom="8"></div>-->
 
     </div>

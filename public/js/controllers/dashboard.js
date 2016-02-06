@@ -12,11 +12,11 @@ angular.module("salesman")
             $scope.oldNotifications.$save();
             $timeout(function () {
                 $scope.notifications.forEach(function (val) {
-                    $scope.oldNotifications.val = $scope.notifications.length;
                     val.adminFirebaseToken = $scope.admin.firebaseToken;
                     $http.post("/products/push-notifications", val).then(function (success) {
                         if (success) {
                             $scope.notifications.$remove(val);
+                            $scope.oldNotifications.val = $scope.notifications.length;
                         }
                     });
                 });
@@ -50,7 +50,6 @@ angular.module("salesman")
                     }
                 }
             });
-
             $state.go("dashboard.viewNotification");
             $scope.oneNotificationRead = noti;
             noti.read = true;
@@ -62,7 +61,6 @@ angular.module("salesman")
                 console.log("Mongodb");
                 $http.post("/products/read-Noti", noti);
             }
-
         };
         //$scope.online = $firebaseArray(ref.child("presence").child("56a9e1c9bd88b2b80cef51a9"));
         usersService.getAdmin().then(function (admin) {
@@ -156,6 +154,10 @@ angular.module("salesman")
         $scope.updatedUserSave = usersService.updatedUserSave;
         $scope.updatedCompanySave = usersService.updatedCompanySave;
         $scope.upLoadProfilePic = common.showDialog;
+
+        $scope.sortDate = function (date) {
+            return new Date(date);
+        }
 
 
     });

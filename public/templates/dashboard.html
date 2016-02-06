@@ -8,34 +8,44 @@
         <md-menu>
             <div class="cursor-hand" ng-click="$mdOpenMenu($event);checkNotifications()"
                  aria-label="Notification">
-                <ng-md-icon ng-show="oldNotifications.val == notifications.length" icon="notifications_on"
+                <ng-md-icon ng-show="oldNotifications.val == notifications.length || notifications.length < 1" icon="notifications_on"
                             class="fill-white">
                 </ng-md-icon>
                 <!--<ng-md-icon ng-hide="oldNotifications.val == notifications.length" icon="notifications_on"
                             style="fill: red"></ng-md-icon>&ndash;&gt;-->
-                <div ng-hide="oldNotifications.val == notifications.length"
-                     class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{notifications.length}}">notifications_on
+                <div ng-hide="oldNotifications.val == notifications.length || notifications.length < 1"
+                     class="cursor-hand material-icons mdl-badge mdl-badge--overlap" data-badge="{{notifications.length}}">
+                    notifications_on
                 </div>
             </div>
             <md-menu-content width="4">
                 <md-list>
-                    <md-list-item ng-class="{notificationsListRead :!noti.read}"
+                    <md-list-item class="md-2-line"
+                                  ng-class="{notificationsListRead :!noti.read}"
                                   ng-click="readNotification(noti,$index,true)"
                                   ng-repeat="noti in notifications | orderBy:'-time'">
-                        <p>{{noti.data.length}} order received by {{noti.salesman | capitalize}}
-                            {{noti.salesman.lastName | capitalize}}
-                            {{(noti.time)}}
-                        </p>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{noti.data.length}} order received from {{noti.salesman | capitalize}}</h3>
+
+                            <p>{{noti.time | date :"MM/dd/yyyy 'at' h:mma"}}</p>
+                        </div>
                         <md-divider></md-divider>
                     </md-list-item>
-                    <md-list-item ng-class="{notificationsListRead :!mongo.read}"
-                                  ng-repeat="mongo in mongoNotifications"
+
+
+                    <md-list-item class="md-2-line"
+                                  ng-class="{notificationsListRead :!mongo.read}"
+                                  ng-repeat="mongo in mongoNotifications | orderBy:'-time'"
                                   ng-click="readNotification(mongo,$index,false)">
-                        <p>{{mongo.data.length}} order received by {{mongo.salesman | capitalize}}
-                            {{mongo.time}}
-                        </p>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{mongo.data.length}} order received from {{mongo.salesman | capitalize}}</h3>
+
+                            <p>{{mongo.time | date :"MM/dd/yyyy 'at' h:mma"}}</p>
+                        </div>
                         <md-divider></md-divider>
                     </md-list-item>
+
+
                 </md-list>
             </md-menu-content>
         </md-menu>
@@ -150,9 +160,13 @@
 
 
     </md-content>
+    <!--  <button ng-click="showUserFrom()"
+              class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
+          <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
+      </button>-->
     <button ng-click="showUserFrom()"
-            class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
-        <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-button  md-fab md-fab-bottom-right">
+        <i class="material-icons">add</i>
     </button>
 </md-sidenav>
 <md-sidenav md-component-id="products" class="md-sidenav-left">
@@ -204,8 +218,13 @@
 
 
     </md-content>
+    <!-- <button ng-click="addProductFrom()"
+             class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
+         <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
+     </button>-->
+
     <button ng-click="addProductFrom()"
-            class="md-button md-icon-button md-raised md-primary md-fab md-fab-bottom-right">
-        <ng-md-icon icon="add" style="fill: #fff"></ng-md-icon>
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-button  md-fab md-fab-bottom-right">
+        <i class="material-icons">add</i>
     </button>
 </md-sidenav>

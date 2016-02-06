@@ -131,7 +131,8 @@ angular.module("salesman", ["ngMaterial", "ui.router", "ngMdIcons", "angular-img
         $httpProvider.interceptors.push('httpInterceptor');
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue');
+            .primaryPalette('blue').dark();
+
     })
     .filter('capitalize', function () {
         return function (input) {
